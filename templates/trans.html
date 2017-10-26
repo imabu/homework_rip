@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %} Список транзакций {% endblock title%}
+{% block content %}
+{% for t in trs %}
+    <div class="row">
+        <div class="col-md-3"></div>
+        <a href="{% url 'one_tr'  t.id %}"><div class="col-md-6 block_trans">
+            <h4>{{ t.created_dt }}</h4>
+            {% if t.type.value %}
+            <h3><p class="type_in">{{ t.summ }}</p></h3>
+            {% else %}
+            <h3><p class="type_out">-{{ t.summ }}</p></h3>
+            {% endif %}
+        </div></a>
+    </div>
+{% endfor %}
+{% endblock content%}
