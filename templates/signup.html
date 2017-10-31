@@ -7,7 +7,7 @@
         <h1>Регистрация</h1>
         <form class="block_base" method="POST">
             {% for e in form.non_field_errors %}
-                <span class="error">{{ e }}</span>
+            <span class="error">{{ e }}</span>
             {% endfor %}
             {% csrf_token %}
             <div class="row form_reg">
@@ -35,15 +35,15 @@
                 <div class="col-md-4">
                     {{form.password2}}
                     {% if form.password2.errors %}
-                        <div class="col-md-6 error">{{form.password2.html_error_list}}</div>
+                    <div class="col-md-6 error">{{form.password2.html_error_list}}</div>
                     {% endif%}
                 </div>
             </div>
-
-            <div class="col-sm-offset-2 col-sm-6">
-                <button type="submit" class="btn btn-primary">Зарегистрироваться</button>
+            <div class="row form_reg">
+                <div class="col-sm-offset-2 col-sm-6">
+                    <button type="submit" class="btn btn-primary">Зарегистрироваться</button>
+                </div>
             </div>
-
         </form>
     </div>
     {% endblock content%}

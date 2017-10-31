@@ -26,4 +26,5 @@ urlpatterns = [
     url(r'^trans/edit/(?P<pk>\w+)/$', views.tr_edit, name='trans_edit'),
     url(r'^signup/$', views.signup, name='signup'),
     url(r'^logout/$', views.u_logout, name='logout'),
+    url(r'^login/$', views.u_login, name='login'),
 ]

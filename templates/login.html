@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %} Авторизация {% endblock %}
+{% block content %}
+<div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-4">
+        <h1>Авторизация</h1>
+        <form class="block_base" method="POST">
+            {% if error_login %}
+            <span class="error">Неправильный логин или пароль</span>
+            {% endif %}
+            {% csrf_token %}
+            <div class="row form_reg">
+                <label class="col-md-2 control-label">Логин</label>
+                <div class="col-md-9">
+                    <input name="username" class="form-control" maxlength="40" required>
+                </div>
+            </div>
+            <div class="row form_reg">
+                <label class="col-md-2 control-label">Пароль</label>
+                <div class="col-md-9">
+                    <input name="password" type="password" class="form-control" maxlength="40" required>
+                </div>
+            </div>
+            <div class="row form_reg">
+                <div class="col-sm-offset-9 col-sm-6">
+                    <button type="submit" class="btn btn-primary">Войти</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    {% endblock content%}
+

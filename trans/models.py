@@ -5,9 +5,8 @@ from django.dispatch import receiver
 
 
 class TransManager(models.Manager):
-    @staticmethod
-    def get_all_trans():
-        return TransactsModel.objects.order_by('-created_dt')
+    def get_all_trans(self, user_id):
+        return TransactsModel.objects.filter(user=user_id).order_by('-created_dt')
 
     @staticmethod
     def get_id():
@@ -40,6 +39,7 @@ class TypeTransactModel(models.Model):
 
 
 class TransactsModel(models.Model):
+    user = models.ForeignKey(User, default=1)
     id = models.IntegerField(primary_key=True, verbose_name='ID')
     type = models.ForeignKey(TypeTransactModel, verbose_name='Тип')
     summ = models.IntegerField(default=0, verbose_name='Сумма')
@@ -52,7 +52,7 @@ class TransactsModel(models.Model):
         verbose_name_plural = u'Транзакции'
 
     def __str__(self):
-        return "{} {} {}".format(self.type, self.summ, self.created_dt)
+        return "{} {} {} {}".format(self.type, self.summ, self.created_dt, self.user)
 
 
 

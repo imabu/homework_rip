@@ -37,3 +37,21 @@ class SignUpForm(forms.Form):
     class Meta:
         model = User
         fields = ('username', 'email', 'password1', 'password2',)
+
+
+class LoginForm(forms.Form):
+    username = forms.CharField(min_length=5, error_messages={'required': 'Введите логин'})
+    password = forms.CharField(min_length=6, widget=forms.PasswordInput)
+
+    def clean(self):
+        password1 = self.cleaned_data.get('password1')
+        password2 = self.cleaned_data.get('password2')
+        if password1 != password2:
+            raise forms.ValidationError('Пароли не совпадают')
+        return self.cleaned_data
+
+    class Meta:
+        model = User
+        fields = ('username', 'password',)
+
+
