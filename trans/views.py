@@ -31,7 +31,7 @@ def signup(request):
             return redirect('index')
     else:
         form = SignUpForm()
-    return render(request, 'signup.html', {'form': form})
+    return render(request, 'signup.html', {'form': form, 'level_1': True})
 
 
 @login_required(login_url='login')
@@ -47,7 +47,7 @@ def tr_add(request):
             return redirect('all_trans')
     else:
         form = TransactsForm()
-        return render(request, 'trans_add.html', {'form': form, 'isAuth': True})
+        return render(request, 'trans_add.html', {'form': form, 'isAuth': True, 'level_1': True})
 
 
 @login_required(login_url='login')
@@ -62,7 +62,7 @@ def tr_edit(request, pk):
             return redirect('one_tr', pk=pk)
     else:
         form = TransactsForm(instance=tr)
-    return render(request, 'trans_edit.html', {'form': form, 'isAuth' : True})
+    return render(request, 'trans_edit.html', {'form': form, 'isAuth': True, 'level_2': True})
 
 
 class TransListView(ListView):
@@ -79,6 +79,7 @@ class TransListView(ListView):
     def get_context_data(self, **kwargs):
         context = super(TransListView, self).get_context_data(**kwargs)
         context['isAuth'] = auth.get_user(self.request).username
+        context['level_1'] = True
         return context
 
 
@@ -91,6 +92,7 @@ class TransactDetail(DetailView):
     def get_context_data(self, **kwargs):
         context = super(TransactDetail, self).get_context_data(**kwargs)
         context['isAuth'] = auth.get_user(self.request).username
+        context['level_2'] = True
         return context
 
     def get_object(self):
@@ -114,7 +116,7 @@ def u_login(request):
                 return redirect('index')
         else:
             logger.info('failed login user: ' + username)
-            return render(request, 'login.html', {'error_login': True})
+            return render(request, 'login.html', {'error_login': True, 'level_1': True})
     else:
         return render(request, 'login.html')
 

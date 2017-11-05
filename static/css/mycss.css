@@ -1,6 +1,7 @@
 .navbar {
     background: #b1b7d8;
     height: 15%;
+    border-radius: 0px;
 }
 .butt_1 {
     background: #b1b7d8;
@@ -130,7 +131,6 @@ h1 {
 
 .glyphicon {
     font-size: 20px;
-    color: #b1b7d8;
 }
 
 .glyphicon:hover {
@@ -139,4 +139,16 @@ h1 {
 
 a:hover {
     text-decoration: none;
+}
+
+.glyphicon-chevron-left {
+    color: #b1b7d8;
+}
+
+.glyphicon-chevron-right {
+    color: #b1b7d8;
+}
+
+.glyphicon-arrow-left {
+    color: #505050;
 }
