@@ -1,8 +1,4 @@
-{% extends "base.html" %}
-{% block title %} Список транзакций {% endblock title%}
-{% block content %}
-{% for t in trs %}
-    <div class="row">
+ <div class="row">
         <div class="col-md-3"></div>
         <a href="{% url 'one_tr'  t.id %}"><div class="col-md-6 block_trans">
             <h4>{{ t.created_dt }}</h4>
@@ -13,22 +9,3 @@
             {% endif %}
         </div></a>
     </div>
-{% endfor %}
-<div class="row">
-    <div class="col-md-3"></div>
-    <div class="col-md-6">
-        {% if paginator.num_pages > 1 %}
-                {% if page_obj.has_previous %}
-                    <a href="/trans/p/{{ page_obj.previous_page_number }}">
-                        <span class="glyphicon glyphicon-chevron-left"></span>
-                    </a>
-                {% endif %}
-                {% if page_obj.has_next %}
-                    <a href="/trans/p/{{ page_obj.next_page_number }}">
-                        <span class="glyphicon glyphicon-chevron-right"></span>
-                    </a>
-                {% endif %}
-        {% endif %}
-    </div>
-</div>
-{% endblock content%}

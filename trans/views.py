@@ -67,10 +67,10 @@ def tr_edit(request, pk):
 
 class TransListView(ListView):
     model = TransactsModel
-    paginate_by = 1
+    paginate_by = 2
     context_object_name = 'trs'
 
-    template_name = 'trans.html'
+    template_name = 'all_trans.html'
 
     def get_queryset(self):
         qs = TransactsModel.objects.get_all_trans(self.request.user.id)
@@ -87,7 +87,7 @@ class TransactDetail(DetailView):
     model = TransactsModel
 
     context_object_name = 'tr'
-    template_name = 'transact.html'
+    template_name = 'about_transact.html'
 
     def get_context_data(self, **kwargs):
         context = super(TransactDetail, self).get_context_data(**kwargs)
