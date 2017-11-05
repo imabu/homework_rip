@@ -17,6 +17,8 @@ from django.conf.urls import url
 from django.contrib import admin
 from trans import views
 
+
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', views.index, name='index'),
@@ -27,4 +29,5 @@ urlpatterns = [
     url(r'^signup/$', views.signup, name='signup'),
     url(r'^logout/$', views.u_logout, name='logout'),
     url(r'^login/$', views.u_login, name='login'),
+    url(r'^page/(?P<page>\d+)/$', views.TransListView.as_view()),
 ]

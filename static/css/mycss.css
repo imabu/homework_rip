@@ -112,3 +112,31 @@ h1 {
 .help {
     color: grey;
 }
+
+.path {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: dash 10s linear infinite;
+}
+
+@keyframes dash {
+  from {
+    stroke-dashoffset: 1000;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.glyphicon {
+    font-size: 20px;
+    color: #b1b7d8;
+}
+
+.glyphicon:hover {
+    color: #340471;
+}
+
+a:hover {
+    text-decoration: none;
+}

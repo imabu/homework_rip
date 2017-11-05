@@ -1,7 +1,7 @@
 #-*- coding: utf-8-*-
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib.auth import authenticate,login,logout
+from django.contrib.auth import authenticate, login, logout
 from django.contrib import auth
 from django.views.generic import ListView, DetailView
 from trans.models import TransactsModel
@@ -47,7 +47,7 @@ def tr_add(request):
             return redirect('all_trans')
     else:
         form = TransactsForm()
-        return render(request, 'trans_add.html', {'form': form, 'isAuth' : True })
+        return render(request, 'trans_add.html', {'form': form, 'isAuth': True})
 
 
 @login_required(login_url='login')
@@ -67,7 +67,7 @@ def tr_edit(request, pk):
 
 class TransListView(ListView):
     model = TransactsModel
-
+    paginate_by = 1
     context_object_name = 'trs'
 
     template_name = 'trans.html'
