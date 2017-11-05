@@ -118,5 +118,5 @@ def u_login(request):
             logger.info('failed login user: ' + username)
             return render(request, 'login.html', {'error_login': True, 'level_1': True})
     else:
-        return render(request, 'login.html')
+        return render(request, 'login.html', {'level_1': True})
 

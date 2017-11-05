@@ -11,47 +11,59 @@
 </head>
 <body>
 <nav class="navbar">
-    {% if level_1 %}
-    <a href="../../../">
-        <div class="col-md-2 butt_1">
-            <div class="butt-nest">
-                <span class="glyphicon glyphicon-arrow-left"></span>
-                <span>На главную</span>
-            </div>
-        </div>
-    </a>
-    {% endif %}
-    {% if level_2 %}
-    <a href="../../../trans">
-        <div class="col-md-2 butt_1">
-            <div class="butt-nest">
-                <span class="glyphicon glyphicon-arrow-left"></span>
-                <span>К списку</span>
-            </div>
-        </div>
-    </a>
-    {% else %}
-        <div class="col-md-2"></div>
-    {% endif %}
     {% if isAuth %}
-    <div class="col-md-9"></div>
-    <a href="../../logout">
-        <div align="center" class="col-md-1 butt_1">
-            <div class="butt-nest">Выход</div>
-        </div>
-    </a>
+        {% if level_1 %}
+        <a href="../../../">
+            <div class="col-sm-2 butt_1">
+                <div class="butt-nest">
+                    <span class="glyphicon glyphicon-arrow-left"></span>
+                    <span>На главную</span>
+                </div>
+            </div>
+        </a>
+        {% endif %}
+        {% if level_2 %}
+        <a href="../../../trans">
+            <div class="col-md-2 butt_1">
+                <div class="butt-nest">
+                    <span class="glyphicon glyphicon-arrow-left"></span>
+                    <span>К списку</span>
+                </div>
+            </div>
+        </a>
+        {% else %}
+            <div class="col-md-2"></div>
+        {% endif %}
+        <div class="col-md-9"></div>
+        <a href="../../logout">
+            <div align="center" class="col-md-1 butt_1">
+                <div class="butt-nest">Выход</div>
+            </div>
+        </a>
     {% else %}
-    <div class="col-md-8"></div>
-    <a href="../login">
-        <div align="center" class="col-md-1 butt_2">
-            <div class="butt-nest">Вход</div>
-        </div>
-    </a>
-    <a href="../signup">
-        <div align="center" class="col-md-2 butt_2">
-            <div class="butt-nest">Регистрация</div>
-        </div>
-    </a>
+        {% if level_1 %}
+        <a href="../../../">
+            <div class="col-sm-2 butt_1">
+                <div class="butt-nest">
+                    <span class="glyphicon glyphicon-arrow-left"></span>
+                    <span>На главную</span>
+                </div>
+            </div>
+        </a>
+        {% else %}
+            <div class="col-md-2"></div>
+        {% endif %}
+        <div class="col-md-7"></div>
+        <a href="../login">
+            <div align="center" class="col-md-1 butt_2">
+                <div class="butt-nest">Вход</div>
+            </div>
+        </a>
+        <a href="../signup">
+            <div align="center" class="col-md-2 butt_2">
+                <div class="butt-nest">Регистрация</div>
+            </div>
+        </a>
     {% endif %}
 </nav>
 {% block content %}
