@@ -56,7 +56,7 @@ class TransactsModel(models.Model):
     summ = models.IntegerField(default=0, verbose_name='Сумма')
     comment = models.TextField(blank=True, verbose_name='Комментарий')
     created_dt = models.DateTimeField(verbose_name='Создано')
-    tags = models.ManyToManyField(TagModel)
+    tags = models.ManyToManyField(TagModel, blank=True)
     pic = models.ImageField(upload_to='tr/', blank=True, verbose_name=u'Документ', default='nope.png')
     is_valid = models.BooleanField(default=False)
     objects = TransManager()

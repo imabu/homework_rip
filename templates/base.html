@@ -13,7 +13,7 @@
 <nav class="navbar">
     {% if isAuth %}
         {% if level_1 %}
-        <a href="../../../">
+        <a href="{%url 'index' %}">
             <div class="col-sm-2 butt_1">
                 <div class="butt-nest">
                     <span class="glyphicon glyphicon-arrow-left"></span>
@@ -23,7 +23,7 @@
         </a>
         {% endif %}
         {% if level_2 %}
-        <a href="../../../trans">
+        <a href="{%url 'all_trans' %}">
             <div class="col-md-2 butt_1">
                 <div class="butt-nest">
                     <span class="glyphicon glyphicon-arrow-left"></span>
@@ -35,14 +35,14 @@
             <div class="col-md-2"></div>
         {% endif %}
         <div class="col-md-9"></div>
-        <a href="../../logout">
+        <a href="{%url 'logout' %}">
             <div align="center" class="col-md-1 butt_1">
                 <div class="butt-nest">Выход</div>
             </div>
         </a>
     {% else %}
         {% if level_1 %}
-        <a href="../../../">
+        <a href="{%url 'index' %}">
             <div class="col-sm-2 butt_1">
                 <div class="butt-nest">
                     <span class="glyphicon glyphicon-arrow-left"></span>
@@ -54,12 +54,12 @@
             <div class="col-md-2"></div>
         {% endif %}
         <div class="col-md-7"></div>
-        <a href="../login">
+        <a href="{%url 'login' %}">
             <div align="center" class="col-md-1 butt_2">
                 <div class="butt-nest">Вход</div>
             </div>
         </a>
-        <a href="../signup">
+        <a href="{%url 'signup' %}">
             <div align="center" class="col-md-2 butt_2">
                 <div class="butt-nest">Регистрация</div>
             </div>

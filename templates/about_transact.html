@@ -22,6 +22,7 @@
             <img id="doc" src="{{ tr.pic.url }}" border="0">
         </div>
         <h4>Теги:</h4> {% for tag in tr.tags.all %}<span class="tags">{{ tag.value }}</span>{% endfor %}
+
         {% if tr.is_valid %}
         {% else %}
         <span id="valid" class="tags">подтверждена</span>

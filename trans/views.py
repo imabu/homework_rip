@@ -45,7 +45,9 @@ def tr_add(request):
             post.id = TransactsModel.objects.get_id()
             post.created_dt = datetime.datetime.today()
             post.save()
-            return redirect('all_trans')
+            form.save_m2m()
+            logger.info(form.cleaned_data['tags'])
+            return redirect('/trans/'+str(post.id))
     else:
         form = TransactsForm()
         return render(request, 'trans_add.html', {'form': form, 'isAuth': True, 'level_1': True})
@@ -60,6 +62,7 @@ def tr_edit(request, pk):
             tr = form.save(commit=False)
             tr.user = request.user
             tr.save()
+            form.save_m2m()
             return redirect('one_tr', pk=pk)
     else:
         form = TransactsForm(instance=tr)
