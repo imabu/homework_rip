@@ -2,10 +2,10 @@
 {% block title %} Подробнее {% endblock title%}
 {% block content %}
 <div class="row">
-    <div class="col-md-2"></div>
-    <div class="col-md-6 block_base">
+    <div class="col-md-3"></div>
+    <div class="col-md-5 block_base">
         <div class="row tran_head">
-            <div align="left" class="col-md-6">ID: {{ tr.id }}</div>
+            <div align="left" class="col-md-6">ID: <span class="tr_id" id="id-{{ tr.id }}">{{ tr.id }}</span></div>
             <div align="right" class="col-md-6">Дата: {{ tr.created_dt }}</div>
         </div>
 
@@ -17,12 +17,25 @@
         {% if tr.comment %}
         <h4>Комментарий: {{ tr.comment }}</h4>
         {% endif %}
+        <h4>Документ:</h4>
+        <div class="block-doc">
+            <img id="doc" src="{{ tr.pic.url }}" border="0">
+        </div>
+        <h4>Теги:</h4> {% for tag in tr.tags.all %}<span class="tags">{{ tag.value }}</span>{% endfor %}
+        {% if tr.is_valid %}
+        {% else %}
+        <span id="valid" class="tags">подтверждена</span>
+        {% endif %}
     </div>
 </div>
 
 <div class="row navig">
     <div class="col-md-2"></div>
     <div class="col-md-6 " align="right">
+        {% if tr.is_valid %}
+        {% else %}
+        <button type="button" id="btn-valid" class="btn btn-success">Подтвердить</button>
+        {% endif %}
         <a href="{% url 'trans_edit' tr.id %}"><button type="button" class="btn btn-success">Изменить</button></a>
     </div>
 </div>

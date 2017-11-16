@@ -5,7 +5,7 @@
     <div class="col-md-3"></div>
     <div class="col-md-5">
         <h1>Новая запись</h1>
-        <form method="POST" class="block_base">
+        <form enctype="multipart/form-data"  method="POST" class="block_base">
             {% csrf_token %}
             <div class="row form_add">
                 {{ form.non_field_errors }}
@@ -30,6 +30,22 @@
                 </div>
                 <div class="col-md-9">
                     {{ form.comment }}
+                </div>
+            </div>
+            <div class="row form_add">
+                <div class="col-md-3">
+                    <label> Документ </label>
+                </div>
+                <div class="col-md-9">
+                    {{ form.pic }}
+                </div>
+            </div>
+            <div class="row form_add">
+                <div class="col-md-3">
+                    <label> Теги </label>
+                </div>
+                <div class="col-md-9">
+                    {{ form.tags }}
                 </div>
             </div>
             <div class="row">

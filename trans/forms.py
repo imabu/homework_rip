@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 class TransactsForm(forms.ModelForm):
     class Meta:
         model = TransactsModel
-        fields = ('type', 'summ', 'comment')
+        fields = ('type', 'summ', 'comment', 'pic', 'tags')
 
 
 class SignUpForm(forms.Form):

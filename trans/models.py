@@ -1,26 +1,9 @@
-from django.contrib.auth.models import User, UserManager
+from django.contrib.auth.models import User
 from django.db import models
-from django.db.models.signals import post_save
-from django.dispatch import receiver
-
-
-class BankManager(models.Manager):
-    @staticmethod
-    def get_id():
-        if BankModel.objects.count() == 0:
-            return 1
-        q = BankModel.objects.order_by('-id').values()[:1]
-        return q[0]['id'] + 1
-
-
-class TagManager(models.Manager):
-
-    def get_tag_by_value(self, tag_value):
-        return self.get(value=tag_value)
 
 
 class TransManager(models.Manager):
-    @staticmethod
+
     def get_all_trans(self, user_id):
         return TransactsModel.objects.filter(user=user_id).order_by('-created_dt')
 
@@ -44,7 +27,6 @@ class ProfileManager(models.Manager):
 # ----------Models----------------------------------------------------
 class TagModel(models.Model):
     value = models.CharField(max_length=15, verbose_name=u'Тег')
-    objects = TagManager()
 
     class Meta:
         verbose_name = u'Тег'
@@ -52,19 +34,6 @@ class TagModel(models.Model):
 
     def __str__(self):
         return "{}".format(self.value)
-
-
-class BankModel(models.Model):
-    id = models.IntegerField(primary_key=True, verbose_name='ID')
-    name = models.CharField(max_length=15, verbose_name=u'Название')
-    objects = BankManager()
-
-    class Meta:
-        verbose_name = u'Банк'
-        verbose_name_plural = u'Банки'
-
-    def __str__(self):
-        return "{}".format(self.name)
 
 
 class TypeTransactModel(models.Model):
@@ -82,14 +51,14 @@ class TypeTransactModel(models.Model):
 
 class TransactsModel(models.Model):
     user = models.ForeignKey(User, default=1)
-    bank = models.ForeignKey(BankModel, default=1)
     id = models.IntegerField(primary_key=True, verbose_name='ID')
     type = models.ForeignKey(TypeTransactModel, verbose_name='Тип')
     summ = models.IntegerField(default=0, verbose_name='Сумма')
     comment = models.TextField(blank=True, verbose_name='Комментарий')
     created_dt = models.DateTimeField(verbose_name='Создано')
     tags = models.ManyToManyField(TagModel)
-    pic = models.ImageField(upload_to='tr/', blank=True, verbose_name=u'Документ')
+    pic = models.ImageField(upload_to='tr/', blank=True, verbose_name=u'Документ', default='nope.png')
+    is_valid = models.BooleanField(default=False)
     objects = TransManager()
 
     class Meta:

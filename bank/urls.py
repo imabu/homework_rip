@@ -14,6 +14,8 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf.urls import url
+from django.conf import settings
+from django.conf.urls.static import static
 from django.contrib import admin
 from trans import views
 
@@ -26,8 +28,9 @@ urlpatterns = [
     url(r'^trans/add/$', views.tr_add),
     url(r'^trans/(?P<pk>\w+)/$', views.TransactDetail.as_view(), name='one_tr'),
     url(r'^trans/edit/(?P<pk>\w+)/$', views.tr_edit, name='trans_edit'),
+    url(r'^tr_valid/(?P<pk>\w+)/$', views.tr_valid, name='trans_valid'),
     url(r'^signup/$', views.signup, name='signup'),
     url(r'^logout/$', views.u_logout, name='logout'),
     url(r'^login/$', views.u_login, name='login'),
     url(r'^trans/p/(?P<page>\d+)/$', views.TransListView.as_view()),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
